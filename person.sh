@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # by Lee Baird (@discoverscripts)
+# Adapted for Brazilian citizens by [Your Name]
 
 f_runlocally
 clear
@@ -14,9 +15,9 @@ if pgrep firefox > /dev/null; then
     exit 1
 fi
 
-echo -e "${BLUE}RECON${NC}"
+echo -e "${BLUE}RECON BRASILEIRO${NC}"
 echo
-echo -n "First name: "
+echo -n "Primeiro nome: "
 read -r FIRST
 
 # Check for no answer
@@ -24,7 +25,7 @@ if [ -z "$FIRST" ]; then
     f_error
 fi
 
-echo -n "Last name:  "
+echo -n "Sobrenome:     "
 read -r LAST
 
 # Check for no answer
@@ -32,19 +33,19 @@ if [ -z "$LAST" ]; then
     f_error
 fi
 
-xdg-open https://www.411.com/name/"$FIRST"-"$LAST"/ &
+# Brazilian-specific resources
+xdg-open "https://www.telelistas.net/busca?q=${FIRST}+${LAST}" &
 sleep 2
-URIPATH="https://www.advancedbackgroundchecks.com/search/results.aspx?type=&fn=${FIRST}&mi=&ln=${LAST}&age=&city=&state="
-xdg-open "$URIPATH" &
+xdg-open "https://www.jusbrasil.com.br/busca?q=${FIRST}+${LAST}" &
 sleep 2
-xdg-open "https://www.familytreenow.com/search/genealogy/results?first=$FIRST&last=$LAST" &
+xdg-open "https://portaldatransparencia.gov.br/busca?termo=${FIRST}+${LAST}" &
 sleep 2
-xdg-open https://www.peekyou.com/"$FIRST"%5f"$LAST" &
+xdg-open "https://www.apontador.com.br/resultados.html?q=${FIRST}+${LAST}" &
 sleep 2
-xdg-open https://www.addresses.com/people/"$FIRST"+"$LAST" &
+xdg-open "https://www.facebook.com/search/people/?q=${FIRST}%20${LAST}&location=Brazil" &
 sleep 2
-xdg-open https://www.spokeo.com/"$FIRST"-"$LAST" &
+xdg-open "https://www.linkedin.com/search/results/people/?keywords=${FIRST}%20${LAST}&location=Brazil" &
 sleep 2
-xdg-open https://www.usphonebook.com/"$FIRST"-"$LAST"
+xdg-open "https://www.google.com/search?q=site:.br+${FIRST}+${LAST}" &
 sleep 2
-xdg-open https://www.youtube.com/results?search_query="$FIRST"+"$LAST" &
+xdg-open "https://www.youtube.com/results?search_query=${FIRST}+${LAST}+Brasil" &
